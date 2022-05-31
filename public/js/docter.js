@@ -1,5 +1,6 @@
 
 const generateBoxes = document.getElementById('generate-boxes');
+let lebalName, labelId, confidance;
 console.log("I am here");
 $.ajax({
                     url: '/getPatientCounts',
@@ -10,7 +11,7 @@ $.ajax({
                     url: '/getPatientDetails',
                     type: 'GET',
                                  success: function (data) {
-                   
+                //    data=JSON.parse(data);
                         for (var i = 0; i < count; i++)
                         {
                                 const row1 = document.createElement('div');
@@ -29,7 +30,10 @@ $.ajax({
                                      details.style.cssText = 'color:#fff;margin-top:30%;font-size:25px;';
                                 button1.className = 'Button1';
                                 button1.style.cssText = 'text-decoration: none;color:#fff;background:black;margin-left:37%;margin-top:5%;border:none;border-radius:5px;font-size:20px;';
-                                     button1.value = data[i]._id;
+                            button1.value = data[i]._id;
+                            labelId = data[i].labelId;
+                            lebalName = data[i].lebalName;
+                            confidance = data[i].confidance;
                             button1.innerText = "Accept";
                             button2.className = 'Button1';
                             button2.value = data[i]._id;
@@ -50,12 +54,16 @@ $.ajax({
                                                body: JSON.stringify({ 'button': button1.value }
                                                ),
                                            })
-                                               .then((data) => {
-                                                   console.log("Data is ", data);
+                                               .then((data1) => {
+                                                //    data = JSON.parse(data);
+                                                //    data1 = JSON.parse(data1);
+                                                   console.log("YOYO Data is ", data1);
                                                    console.log(button1.value);
-                                                    
-                     var myWindow2 = window.open("", "", "width=700,height=550");
-                    myWindow2.document.write(`<form action="/postInputPrescription" method="post"><input id="presId" type="text" name="id" value="${button1.value}" style="width:60%;height:10%;"><input id="presId" type="text" name="prescription" placeholder="PRESCRIPTION" style="width:60%;height:10%;"><input type="submit" value="prescribe"></form>`);
+    
+                                                   
+                     var myWindow2 = window.open("", "", "width=900,height=650");
+                                                   myWindow2.document.write(`<form action="/postInputPrescription" method="post"><input id="presId" type="text" name="id" value="${button1.value}" style="width:60%;height:10%;"><input id="presId" type="text" name="prescription" placeholder="PRESCRIPTION" style="width:60%;height:10%;"><input type="submit" value="prescribe"></form><input id="dataName" type="text" name="id" value="${lebalName}"><input id="dataId" type="text" name="id" value="${labelId}"><input id="dataC" type="text" name="id" value="${confidance}">`);
+                            
                                                  
 
             

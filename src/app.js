@@ -238,7 +238,13 @@ app.post('/postInputPrescription', async(req, res) => {
 app.post('/postAccept', async(req, res) => {
     try {
         let data = await req.body.button;
-        res.render("HomeD");
+        let get = await Appointments.findOne({ _id: data });
+        
+        get = [get.lebalName, get.labelId, get.confidance];
+        console.log("HUM hain ", get);
+        // get = JSON.stringify(get);
+        res.status(200).send(get);
+        // res.render("HomeD");
     } catch (e) {
         
     }

@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
+ <link rel="stylesheet" href="css/style.css" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -17,12 +17,12 @@
     />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-    
-    <title>Hello, world!</title>
+    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
+    <title>Patient Home</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="bg-style">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" id="company-name" href="#">NextGen Lab</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -38,23 +38,23 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto" id="color-style">
           <li class="nav-item active">
-            <a class="nav-link" href="#Home"
-              >Home <span class="sr-only">(current)</span></a
+            <a class="nav-link" id="admin" href="/admin"
+              >Admin <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#appointments"
-              >Pending Appointments <span class="sr-only">(current)</span></a
+            <a class="nav-link" id="docter" href="/loginD"
+              >Docter <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#pending"
-              >Approved Appointments<span class="sr-only">(current)</span></a
+            <a class="nav-link" href="/HomeP" style="font-size:19px !important;"
+              >Patient<span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/logoutP"
-              > logout<span class="sr-only">(current)</span></a
+              > Logout<span class="sr-only">(current)</span></a
             >
           </li>
         </ul>
@@ -70,17 +70,45 @@
           <p>you can search docter and fix an appointment here.</p>
         </div>
         <div id="docter-img">
-          <img src="images/docter.jpg" />
+          {{!-- <img src="images/docter.jpg" /> --}}
+          <div id="set-Img">
+            {{!-- <div id="img1">
+          <img src="images/patImg.svg" alt="Image" srcset="" width="200px" height="300px">
+          </div> --}}
+          <img src="images/docImg2.svg" alt="Image" srcset="" width="500px" height="300px">
+          </div>
         </div>
       </section>
+       <hr>
       <section id="section2">
+        
         <center>
+          
           <h1 id="heading-section">FIX APPOINTMENTS!</h1>
+          
         </center>
+       
         <div id="generate-boxes"></div>
       </section>
+      <hr>
+      <section id="section2">
+        
+        <center>
+          <h1 id="heading-section">Approve Requests!</h1>
+        </center>
+        
+        <div id="generate-boxes-prescription"></div>
+      </section>
+      <hr>
     </main>
-
+<br><br>
+<footer class="footer-section">
+                    <div class="text-center">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2022, All Right Reserved</p>
+                            </div>
+                    </div>
+    </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

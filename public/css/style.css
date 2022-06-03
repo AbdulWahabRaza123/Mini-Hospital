@@ -2,6 +2,7 @@ body{
     font-family: 'Jost', sans-serif !important;
     margin-left: 30px;
     margin-right: 30px;
+    background-color: #E7F9F5;
     
 }
 #bg-style{
@@ -9,10 +10,23 @@ body{
     padding-bottom:10px;
     padding-top: 10px;
     border-radius: 7px;
+    
+}
+#company-name{
+font-weight: bold;
 }
 a{
     color: #fff !important;
     font-family: 'Jost', sans-serif !important;
+}
+a:hover{
+    color: #3bbb9f !important;
+}
+#admin:hover{
+    font-size:19px !important;
+}
+#docter:hover {
+    font-size: 19px !important;
 }
 #section1{
     display: flex;
@@ -21,10 +35,16 @@ a{
 }
 main #docter-img{
     /* float:right; */
-    margin-left:50px;
+    margin-left:100px;
+    margin-top:25px;
+}
+#set-Img{
+    display:flex;
+    flex-direction:row;
 }
 main #heading-section{
     color:#6d44b8;
+    /* color: #E7F9F5; */
     margin-top: 130px;
     margin-left: 150px;
     margin-right:120px;
@@ -39,4 +59,32 @@ main h1{
 #C1Box{
     padding:100px;
     background-color:#6d44b8;
+}
+
+
+.footer-section {
+    background: #6d44b8;
+    position: relative;
+    padding-top:25px;
+    padding-bottom: 15px;
+    border-radius: 7px;
+    margin-left:5px;
+    margin-right:5px;
+}
+.Button1:hover{
+background-color: #3bbb9f !important;
+color:#fff !important;
+}
+.Button2:hover {
+    background-color:red !important;
+    color: #fff !important;
+}
+.copyright-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+}
+.nav-link{
+font-weight: bolder !important;
+font-size: 14px !important;
 }

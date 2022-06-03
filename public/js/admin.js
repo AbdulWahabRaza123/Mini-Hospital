@@ -1,4 +1,5 @@
 const generateBoxes = document.getElementById('generate-boxes');
+generateBoxes.style.cssText='display:flex;flex-direction:row;flex-wrap:wrap;'
 $.ajax({
                     url: '/getCount',
                     type: 'GET',
@@ -16,7 +17,7 @@ $.ajax({
                                 row1.style.cssText = 'margin-top:40px;';
                                 const c1 = document.createElement('div');
                                 c1.className = 'C1';
-                            c1.style.cssText = 'overflow:auto;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:15px;margin-bottom:10px;';
+                            c1.style.cssText = 'overflow:auto;font-weight:bold;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:25px;border:3px solid #3bbb9f;margin-bottom:10px;';
                             const button1 = document.createElement('button');
                             const details = document.createElement('div');
                             details.className = "details";
@@ -24,8 +25,8 @@ $.ajax({
                                      console.log("Data is ", data[i]);
                                      details.innerHTML = `<center>${data[i].username}<br/><br/>${data[i].specialization}</center>`
                                      details.style.cssText = 'color:#fff;margin-top:30%;font-size:25px;';
-                                button1.className = 'Button1';
-                                button1.style.cssText = 'text-decoration: none;color:#fff;background:black;margin-left:37%;margin-top:25%;border:none;border-radius:5px;font-size:20px;';
+                                button1.className = 'Button2';
+                                button1.style.cssText = 'text-decoration: none;color:red;background:#fff;font-weight: bolder;margin-left:37%;margin-top:25%;border:none;border-radius:5px;font-size:20px;';
                                      button1.value = data[i]._id;
                                      console.log(button1.value);
                                      button1.innerText = "Delete";
@@ -40,7 +41,8 @@ $.ajax({
         ),
     })
         .then((data) => {
-            alert("refresh page docter is removed");
+            // alert("refresh page docter is removed");
+            window.location.reload();
             
                 })
                 .catch((err) => console.log("Here is errer ",err));
@@ -73,7 +75,7 @@ $.ajax({
 
 
 const getPatientBoxes = document.getElementById('generate-boxes-patients');
-getPatientBoxes.style.cssText='display:flex;flex-direction:row;'
+getPatientBoxes.style.cssText='display:flex;flex-direction:row;flex-wrap:wrap;'
 $.ajax({
                     url: '/getPCount',
                     type: 'GET',
@@ -92,7 +94,7 @@ $.ajax({
                                 row1.style.cssText = 'margin-top:40px;';
                                 const c1 = document.createElement('div');
                                 c1.className = 'C1';
-                            c1.style.cssText = 'overflow:auto;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:15px;margin-bottom:10px;';
+                            c1.style.cssText = 'overflow:auto !important;font-weight:bold;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:25px;border:3px solid #3bbb9f;margin-bottom:10px;';
                             const button1 = document.createElement('button');
                             const details = document.createElement('div');
                             details.className = "details";
@@ -101,8 +103,8 @@ $.ajax({
                                      console.log("Data is ", data[i].username);
                                      details.innerHTML = `<center>${data[i].username}<br/><br/></center>`
                                      details.style.cssText = 'color:#fff;margin-top:30%;font-size:25px;';
-                                button1.className = 'Button1';
-                                button1.style.cssText = 'text-decoration: none;color:#fff;background:black;margin-left:39%;margin-top:25%;border:none;border-radius:5px;font-size:20px;';
+                                button1.className = 'Button2';
+                                button1.style.cssText = 'text-decoration: none;color:red;background:#fff;font-weight: bolder;margin-left:39%;margin-top:25%;border:none;border-radius:5px;font-size:20px;';
                                      button1.value = data[i]._id;
                                      console.log(button1.value);
                                      button1.innerText = "Delete"; 
@@ -115,8 +117,9 @@ $.ajax({
                 },
                 body: JSON.stringify({ 'button':button1.value}),})
         .then((data) => {
-            console.log("Data is ", data);
-            alert("Patient Deleted Reload Page");
+            // console.log("Data is ", data);
+            // alert("Patient Deleted Reload Page");
+            window.location.reload();
 
                 })
                 .catch((err) => console.log(err));
@@ -150,7 +153,7 @@ $.ajax({
 
 
 const generateBoxesPrescription = document.getElementById('generate-boxes-prescription');
-generateBoxesPrescription.style.cssText='display:flex;flex-direction:row;'
+generateBoxesPrescription.style.cssText='display:flex;flex-direction:row;flex-wrap:wrap;'
 $.ajax({
                     url: '/getPrceptionCount',
                     type: 'GET',
@@ -169,17 +172,17 @@ $.ajax({
                                 row1.style.cssText = 'margin-top:40px;';
                                 const c1 = document.createElement('div');
                                 c1.className = 'C1';
-                            c1.style.cssText = 'overflow:auto;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:15px;margin-bottom:10px;';
+                            c1.style.cssText = 'overflow:auto;font-weight:bold;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:25px;border:3px solid #3bbb9f;margin-bottom:10px;';
                             const button1 = document.createElement('button');
                             const details = document.createElement('div');
                             details.className = "details";
                              
                                     //  data = JSON.parse(data);
                                      console.log("Data is ", data[i].username);
-                                     details.innerHTML = `<center><h3>${data[i].docName}</h1><br/><br/>${data[i].pName}<br/><br/><p style="font-size:15px;">${data[i].prescription}</p></center>`
+                                     details.innerHTML = `<center>${data[i].docName}<br/><br/>${data[i].pName}<br/><br/><p style="font-size:15px;color:red;">${data[i].prescription}</p></center>`
                                      details.style.cssText = 'color:#fff;margin-top:20%;font-size:25px;';
-                                button1.className = 'Button1';
-                                button1.style.cssText = 'text-decoration: none;color:#fff;background:black;margin-left:39%;margin-top:20%;border:none;border-radius:5px;font-size:20px;';
+                                button1.className = 'Button2';
+                                button1.style.cssText = 'text-decoration: none;color:red;background:#fff;font-weight: bolder;margin-left:39%;margin-top:20%;border:none;border-radius:5px;font-size:20px;';
                                      button1.value = data[i]._id;
                                      console.log(button1.value);
                                      button1.innerText = "Delete"; 
@@ -192,8 +195,9 @@ $.ajax({
                 },
                 body: JSON.stringify({ 'button':button1.value}),})
         .then((data) => {
-            console.log("Data is ", data);
-            alert("Perception Deleted Reload Page");
+            // console.log("Data is ", data);
+            // alert("Perception Deleted Reload Page");
+            window.location.reload();
 
                 })
                 .catch((err) => console.log(err));
@@ -232,7 +236,7 @@ $.ajax({
 
 
 const generateBoxesPending = document.getElementById('generate-boxes-pending');
-generateBoxesPending.style.cssText='display:flex;flex-direction:row;'
+generateBoxesPending.style.cssText='display:flex;flex-direction:row;flex-wrap:wrap;'
 $.ajax({
                     url: '/getPendingCount',
                     type: 'GET',
@@ -251,17 +255,17 @@ $.ajax({
                                 row1.style.cssText = 'margin-top:40px;';
                                 const c1 = document.createElement('div');
                                 c1.className = 'C1';
-                            c1.style.cssText = 'overflow:auto;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:15px;margin-bottom:10px;';
+                            c1.style.cssText = 'overflow:auto;font-weight:bold;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:25px;border:3px solid #3bbb9f ;margin-bottom:10px;';
                             const button1 = document.createElement('button');
                             const details = document.createElement('div');
                             details.className = "details";
                              
                                     //  data = JSON.parse(data);
                                      console.log("Data is ", data[i].username);
-                                     details.innerHTML = `<center><h3>${data[i].docName}</h1><br/><br/>${data[i].pName}<br/><br/><p style="font-size:15px;">${data[i].illness}</p></center>`
+                                     details.innerHTML = `<center>${data[i].docName}<br/><br/>${data[i].pName}<br/><br/></center>`
                                      details.style.cssText = 'color:#fff;margin-top:20%;font-size:25px;';
-                                button1.className = 'Button1';
-                                button1.style.cssText = 'text-decoration: none;color:#fff;background:black;margin-left:39%;margin-top:20%;border:none;border-radius:5px;font-size:20px;';
+                                button1.className = 'Button2';
+                                button1.style.cssText = 'text-decoration: none;color:red;background:#fff;font-weight: bolder;margin-left:39%;margin-top:20%;border:none;border-radius:5px;font-size:20px;';
                                      button1.value = data[i]._id;
                                      console.log(button1.value);
                                      button1.innerText = "Delete"; 
@@ -274,8 +278,9 @@ $.ajax({
                 },
                 body: JSON.stringify({ 'button':button1.value}),})
         .then((data) => {
-            console.log("Data is ", data);
-            alert("Perception Deleted Reload Page");
+            // console.log("Data is ", data);
+            // alert("Perception Deleted Reload Page");
+            window.location.reload();
 
                 })
                 .catch((err) => console.log(err));

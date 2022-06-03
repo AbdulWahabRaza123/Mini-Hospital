@@ -30,9 +30,12 @@ const formSchema = new mongoose.Schema({
 })
 formSchema.methods.generateAuthToken = async function () {
     try {
+        
         const token = jwt.sign({ id: this.id.toString() }, "mynameisabdulwahabraza");
+        
         this.tokens = this.tokens.concat({ token: token });
         await this.save();
+         
         return token;
     } catch (e)
     {

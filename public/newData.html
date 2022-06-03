@@ -1,41 +1,10 @@
 <html>
   <head>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    {{!-- <link rel="stylesheet" type="text/css" href="slide navbar style.css" /> --}}
-    <link rel="stylesheet" href="css/loginP.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
-    <title>upload image</title>
   </head>
 
   <body>
-      <div class="main">
-      <input type="checkbox" id="chk" aria-hidden="true" />
-
-      <div class="signup">
-         <label for="chk" aria-hidden="true">IMAGE</label>
-        <form
-        action="/postAppointment"
-        method="post"
-        enctype="multipart/form-data"
-      >
-      <div id="set-upload" id="upload-here">
-        <input type="text" name="address" id="address" placeholder="Address" required="">
-        <input type="text" name="age" id="age" placeholder="Age" required="">
-        <input type="file" class="setting-file" name="Img" id="file" required=""/>
-        <input type="submit" class="setting-submit" id="upload-main" value="Upload">
-        </div>
-      </form>
-
-
-
-      </div>
-
-    </div>
-    {{!-- <div id="main" class="container">
+    <div id="main" class="container">
       <h1 id="title">Please Select Image</h1>
 
       <!-- Drag and Drop container-->
@@ -48,11 +17,10 @@
         enctype="multipart/form-data"
       >
         <input type="file" name="Img" id="file" />
-        <input type="submit" value="upload">
+        <input type="submit" value="upload" />
       </form>
-    </div> --}}
+    </div>
     <script>
-        {{!-- alert("Please Wait for 10 seconds after selecting image"); --}}
       $(function () {
         // preventing page from redirecting
         $("html").on("dragover", function (e) {
@@ -220,7 +188,6 @@
               body: JSON.stringify({ button: response }),
             })
               .then((res) => {
-                  {{!-- alert("Now click on upload button"); --}}
                 console.log(res);
               })
               .catch((e) => console.log(e));

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const formSchema = new mongoose.Schema({
     docId: {
         type: String,
@@ -26,6 +25,16 @@ const formSchema = new mongoose.Schema({
     {
        data: Buffer,
        contentType:String
+    },
+    age: {
+        type: String
+    },
+    address: {
+        type: String
+    },
+    getcnic: {
+        type: String,
+        required:true
     },
       lebalName: {
         type: String

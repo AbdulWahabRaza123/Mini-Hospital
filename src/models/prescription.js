@@ -22,10 +22,20 @@ const formSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    getcnic: {
+        type: String,
+        required:true
+    },
        Image:
     {
        data: Buffer,
        contentType:String
+    },
+    age: {
+        type: String
+    },
+    address: {
+        type: String
     },
     lebalName: {
         type: String

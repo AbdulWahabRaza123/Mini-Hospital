@@ -17,12 +17,13 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
 
-    <title>Hello, world!</title>
+    <title>Admin</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="bg-style">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" id="company-name" href="#">NextGen Lab</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -37,24 +38,24 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto" id="color-style">
-          <li class="nav-item active">
-            <a class="nav-link" href="#Home"
-              >Home <span class="sr-only">(current)</span></a
+               <li class="nav-item active">
+            <a class="nav-link" href="/HomeA" style="font-size:19px !important;"
+              >Admin <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#appointments"
-              >Appointments <span class="sr-only">(current)</span></a
+            <a class="nav-link" href="/loginD"
+              >Docter <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#pending"
-              >Approved Appointments<span class="sr-only">(current)</span></a
+            <a class="nav-link" href="/loginP"
+              >Patient<span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/logoutA"
-              >logout<span class="sr-only">(current)</span></a
+            <a class="nav-link" href="/logoutP"
+              > Logout<span class="sr-only">(current)</span></a
             >
           </li>
         </ul>
@@ -67,38 +68,56 @@
             LOOKING FOR <br />
             PATIENTS!
           </h1>
-          <p>your patients are waiting here for your response.</p>
+          <p>your can check here the details about everything.</p>
         </div>
         <div id="docter-img">
           <br />
-          <img src="images/prescription.jpg" />
+          {{!-- <img src="images/prescription.jpg" /> --}}
+          <div id="set-Img">
+            {{!-- <div id="img1">
+          <img src="images/patImg.svg" alt="Image" srcset="" width="200px" height="300px">
+          </div> --}}
+          <img src="images/docImg2.svg" alt="Image" srcset="" width="500px" height="300px">
+          </div>
         </div>
       </section>
+      <hr>
       <section id="section2">
         <center>
-          <h1 id="heading-section">DOCTERS</h1>
+          <h1 id="heading-section">DOCTERS!</h1>
         </center>
         <div id="generate-boxes"></div>
       </section>
+      <hr>
       <section id="section2">
         <center>
-          <h1 id="heading-section">PATIENTS</h1>
+          <h1 id="heading-section">PATIENTS!</h1>
         </center>
         <div id="generate-boxes-patients"></div>
       </section>
+      <hr>
       <section id="section2">
         <center>
-          <h1 id="heading-section">PRESCRIPTION</h1>
+          <h1 id="heading-section">PRESCRIPTION!</h1>
         </center>
         <div id="generate-boxes-prescription"></div>
       </section>
+      <hr>
       <section id="section2">
         <center>
-          <h1 id="heading-section">PENDING REQUESTS</h1>
+          <h1 id="heading-section">PENDING REQUESTS!</h1>
         </center>
         <div id="generate-boxes-pending"></div>
       </section>
     </main>
+    <br><br>
+<footer class="footer-section">
+                    <div class="text-center">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2022, All Right Reserved</p>
+                            </div>
+                    </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

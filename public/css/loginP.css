@@ -39,7 +39,10 @@ label {
     cursor: pointer;
     transition: .5s ease-in-out;
 }
-
+#address,#age,#file,#upload-main{
+height: 35px;
+width:200px;
+}
 input {
     width: 60%;
     height: 20px;
@@ -98,4 +101,39 @@ button:hover {
 
 #chk:checked~.signup label {
     transform: scale(.6);
+}
+.setting-file{
+    padding-bottom:35px !important;
+}
+.setting-submit{
+    padding-bottom: 35px !important;
+    color:green;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+#set-upload {
+    background-color: #fff;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-left:35px;
+    margin-right:35px;
+    border-radius:50px;
+    margin-top:-25px;
+    border: 1px solid green;
+}
+#upload-main{
+    border: 1px solid green;
+}
+#upload-main:hover{
+background-color: #3bbb9f;
+color:#fff;
+
+}
+#file-main{
+    border: 1px solid green;
+}
+input[type="file"]:hover{
+    background-color: #3bbb9f;
+
 }

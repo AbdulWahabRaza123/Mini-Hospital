@@ -12,6 +12,10 @@ const formSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    getcnic: {
+        type: String,
+        required:true
+    },
     password:
     {
         type: String,

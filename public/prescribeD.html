@@ -4,9 +4,100 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/report.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="report-content">
+      <div class="report-header">
+        <div id="header-report">
+          <img id="report-logo" src="images/report icon.png" alt="logo" />
+          <center>
+            <h1>NextGen Lab</h1>
+          </center>
+        </div>
+      </div>
+      <div class="patient-details">
+        <hr />
+        <table border="0">
+          <!-- <tr>
+            <td><b>Patient Name:</b></td>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td class="align-left"><b>Date:</b></td>
+          </tr> -->
+          <tr>
+            <!-- <td><b>Patient CNIC:</b>${cnic}</td> -->
+
+            <h2>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <b>Docter Name:</b
+              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${docName}
+            </h2>
+          </tr>
+          <!-- <tr>
+            <td class="align-left">Patient ID/UHID:</td>
+          </tr> -->
+        </table>
+        <hr />
+      </div>
+      <div id="p-Details">
+        <b> Patient Name is:</b
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${pName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br /><br /><b
+          >Patient Age is:</b
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${age}<br /><br /><br /><b
+          >Patient Address is:</b
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${address}<br /><br /><br /><b
+          >Date is:</b
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${date}<br /><br /><br />
+        <b>CNIC is:</b
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${cnic}<br /><br /><br />
+        <b>Prescription is:</b><br /><br /><br />
+        <b>Becteria Is:</b>
+      </div>
+      <div class="report-body">
+        <form action="/postInputPrescription" method="post">
+          <input
+            id="presId"
+            type="text"
+            name="prescription"
+            placeholder="PRESCRIPTION"
+            required=""
+            style="height: 50px"
+          /><br />
+          <input
+            id="dataName"
+            type="text"
+            name="id"
+            value="${lebalName}"
+          /><br />
+          <input
+            id="presId"
+            type="hidden"
+            name="id"
+            value="${button1.value}"
+          /><br />
+          <br /><input
+            type="submit"
+            onclick="display()"
+            value="Prescribe and Print"
+          /><br />
+        </form>
+      </div>
+      <div class="report-sign">
+        <div class="lab-doctor-sign">
+          <img
+            src="https://labsmart-healthcare-trial.s3.us-west-2.amazonaws.com/diagnostic_lab_524/sample_pathologist_sign.jpg"
+          />
+          <figcaption>${docName}</figcaption>
+        </div>
+      </div>
+
+      <div class="report-footer"></div>
+    </div>
+    <script>
+      function display() {
+        window.print();
+      }
+    </script>
   </body>
 </html>

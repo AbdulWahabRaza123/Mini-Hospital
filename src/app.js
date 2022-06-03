@@ -41,17 +41,35 @@ let upload = multer({ storage: storage });
 app.get('/', (req,res) => {
     res.render("index");
 })
-app.get('/Home', (req, res) => {
+app.get('/index', (req, res) => {
     res.render("index");
 })
 app.get('/Admin', (req, res) => {
     res.render("loginA");
 })
+app.get('/admin', (req, res) => {
+    res.render("loginA");
+})
 app.get('/Docter', (req, res) => {
     res.render("loginD");
 })
+app.get('/HomeD', (req, res) => {
+    res.render("HomeD");
+})
+app.get('/HomeP', (req, res) => {
+    res.render("HomeP");
+})
+app.get('HomeA', (req, res) => {
+    res.render("admin");
+})
 app.get('/Patient', (req, res) => {
     res.render("loginP");
+})
+app.get('/loginP', (req, res) => {
+    res.render("loginP");
+})
+app.get('/loginD', (req, res) => {
+    res.render("loginD");
 })
 app.get('/getCount', async(req, res) => {
     let count = await Docters.find().countDocuments();
@@ -110,6 +128,27 @@ app.get('/getPendingnData', async (req, res) => {
         console.log(e);
     }
 })
+app.get('/getReportCount', async (req, res) => {
+    const token = req.cookies.jwt;
+    const verifyUser = jwt.verify(token, "mynameisabdulwahabraza");
+        let data1 = await Prescription.find({ pId: verifyUser.id }).countDocuments();
+    let count = JSON.stringify(data1);
+    res.status(200).send(count);
+})
+app.get('/getReportData', async(req, res) => {
+    try {
+        const token = req.cookies.jwt;
+        const verifyUser = jwt.verify(token, "mynameisabdulwahabraza");
+        let data1 = await Prescription.find({ pId: verifyUser.id });
+        let data = JSON.stringify(data1);
+        res.send(data);
+//         
+
+    } catch (e)
+    {
+        res.send('Error');
+    }
+})
 app.get('/getPatientCounts', async(req, res) => {
     try {
         const token = req.cookies.jwt;
@@ -119,7 +158,7 @@ app.get('/getPatientCounts', async(req, res) => {
         data = JSON.stringify(data);
         res.status(200).send(data);
     } catch (e) {
-        
+        res.send('something went wrong');
     }
 })
 app.get('/getDoctersFromDb', async(req, res) => {
@@ -212,8 +251,11 @@ app.post('/getImage1', async (req, res) => {
 app.post('/postInputPrescription', async(req, res) => {
     try {
         const data = req.body.prescription;
+        console.log(data);
         const id = req.body.id;
-        const get = await Appointments.findOne({ _id:id });
+        console.log(id);
+        const get = await Appointments.findOne({ _id: id });
+        console.log(get.getcnic);
          const prescribe = new Prescription({
                 docId: get.docId,
                 docName: get.docName,
@@ -224,15 +266,19 @@ app.post('/postInputPrescription', async(req, res) => {
                     data: get.Image.data,
                     contentType:get.Image.contentType
              },
+             getcnic: get.getcnic,
+             address: get.address,
+                age:get.age,
                 lebalName: get.lebalName,
                 labelId: get.labelId,
                 confidance:get.confidance
             })
             const registered = await  prescribe.save();
         const result = await Appointments.findByIdAndDelete({ _id:id });
-        res.send("Request Accepted");
+        res.send(`<script>window.print();window.close();window.location.reload();</script>`);
     } catch (e) {
         console.log(e);
+         res.send("Something went wrong");
     }
 })
 app.post('/postAccept', async(req, res) => {
@@ -267,8 +313,8 @@ app.post('/postA',upload.single('Image'), async (req, res) => {
                 Image: {
                     data: fs.readFileSync('uploads/temp.jpg'),
                     contentType:'image/jpeg'
-                }
-
+                },
+                getcnic:user.getcnic
             })
             const registered = await appointment.save();
              
@@ -286,12 +332,14 @@ app.post('/signupPatient',async(req, res) => {
         const patient = new Patients({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            getcnic:req.body.cnic
         })
         const token = await patient.generateAuthToken();
         const registered = await patient.save();
         pCount++;
-        res.send("Patient Registered Successfully!! please login now");
+        // res.render("loginP");
+        res.send(`<script>alert("Successfully Register!!!");window.location.href = "/loginP";</script>`);
         
     } catch (e) {
         console.log("Error while registering patient");
@@ -306,35 +354,38 @@ app.post('/loginPatient', async(req, res) => {
         if (getemail.password === password) {
             const token = await getemail.generateAuthToken();
             res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 1000000000),
-            httpOnly: true,
-            // secure:true
-        })
+                expires: new Date(Date.now() + 1000000000),
+                httpOnly: true,
+                // secure:true
+            })
             res.render("HomeP");
         }
         else {
-            res.send("Enter right login details");
+            res.send(`<script>alert("Enter right login details");window.location.href = "/loginP";</script>`);
         }
     } catch (e) {
-        res.send("Invalid login Detail");
+        res.send(`<script>alert("Enter right login details");window.location.href = "/loginP";</script>`);
     }
 })
 app.post('/signupDocter',async(req, res) => {
     try {
+        
         const docter = new Docters({
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
             specialization:req.body.specialization
         })
+        console.log("Hi I am docter");
         const token = await docter.generateAuthToken();
         const registered = await docter.save();
 
-        res.send("Docter is registered");
+        // res.render("loginD");
+        res.send(`<script>alert("Successfully Register!");window.location.href = "/loginD";</script>`);
         
     } catch (e) {
         console.log("Error while registering Docter");
-        res.send("Docter cannot register try another email");
+        res.send(`<script>alert("Docter cannot register try another email");window.location.href = "/loginD";</script>`);
     }
 })
 app.post('/loginDocter', async(req, res) => {
@@ -352,19 +403,23 @@ app.post('/loginDocter', async(req, res) => {
             res.render("HomeD");
         }
         else {
-            res.send("Enter right login details");
+             res.send(`<script>alert("Enter right login details");window.location.href = "/loginD";</script>`);
         }
     } catch (e) {
-        res.send("Invalid login Detail");
+        res.send(`<script>alert("Enter right login details");window.location.href = "/loginD";</script>`);
+        // res.render('wrongDP');
     }
 })
 let aCount = 0;
 app.post('/signupAdmin',async(req, res) => {
     try {
         const admin = new Admins({
-            username: req.body.username,
-            email: req.body.email,
-            password:req.body.password
+            // username: req.body.username,
+            // email: req.body.email,
+            // password:req.body.password
+            username: "Abdul Wahab Raza",
+            email: "abdulwahabraza@gmail.com",
+            password:"12345"
         })
         const token = await admin.generateAuthToken();
         const registered = await admin.save();
@@ -372,7 +427,7 @@ app.post('/signupAdmin',async(req, res) => {
         
     } catch (e) {
         console.log("Error while registering Admin");
-        res.send("Admin cannot register try another email");
+        res.send(`<script>alert("Enter right signup details");window.location.href = "/loginA";</script>`);
     }
 })
 app.post('/loginAdmin', async(req, res) => {
@@ -390,7 +445,7 @@ app.post('/loginAdmin', async(req, res) => {
             res.render("admin");
         }
         else {
-            res.send("Enter right login details");
+            res.send(`<script>alert("Enter right login details");window.location.href = "/admin";</script>`);
         }
     } catch (e) {
         res.send("Invalid login Detail");
@@ -407,6 +462,7 @@ app.get('/logoutD',authD, async (req, res) => {
         res.render("index");
     } catch (e) {
         console.log(e);
+        res.render("index");
     }
 })
 app.get('/logoutP',authP, async (req, res) => {
@@ -420,6 +476,7 @@ app.get('/logoutP',authP, async (req, res) => {
         res.render("index");
     } catch (e) {
         console.log(e);
+        res.render("index");
     }
 })
 app.get('/logoutA',authA, async (req, res) => {
@@ -433,6 +490,7 @@ app.get('/logoutA',authA, async (req, res) => {
         res.render("index");
     } catch (e) {
         console.log(e);
+        res.render("index");
     }
 })
 app.get('/getImage', async (req, res) => {
@@ -472,8 +530,8 @@ app.post('/postDataHere', async (req, res) => {
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, "mynameisabdulwahabraza");
         const user = await Patients.findOne({ _id: verifyUser.id });
-        const chk2 = await Appointments.findOne({ docId: data._id, pId: user._id });
-              if (chk2 == null) {
+        const chk2 = await Appointments.findOne({ docId: getDocData._id, pId: user._id });
+              if (!chk2) {
             const appointment = new Appointments({
                 docId: getDocData.id,
                 docName: getDocData.username,
@@ -481,9 +539,10 @@ app.post('/postDataHere', async (req, res) => {
                 pName: user.username,
                 docStatus: "pending",
                 Image: {
-                    data:0,
-                    contentType:'image/jpeg'
+                    data: null,
+                    contentType: 'image/jpeg'
                 },
+                getcnic:user.getcnic,
                 lebalName: data.labelName,
                 labelId: data.labelId,
                 confidance:data.confidence
@@ -503,26 +562,41 @@ app.post('/postDataHere', async (req, res) => {
     }
     
 })
-app.post('/postAppointment',upload.single('Img'), async (req, res) => {
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+app.post('/postAppointment', upload.single('Img'), async (req, res) => {
+    
     try {
+        let add = req.body.address;
+        let ag = req.body.age;
+        await sleep(10000);
         const data2 = fs.readFileSync(path.join(__dirname, '../src/text.txt'), "utf8");
         let data = await Docters.findOne({ _id: data2 });
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, "mynameisabdulwahabraza");
         const user = await Patients.findOne({ _id: verifyUser.id });
         const chk2 = await Appointments.findOne({ docId: data._id, pId: user._id });
+        if (chk2.Image.data == null) {
             const result = await Appointments.findByIdAndUpdate({ _id: chk2._id },
                 {
 
-                        Image: {
-                            data: fs.readFileSync('uploads/temp.jpg'),
-                            contentType: 'image/jpeg'
-                        }
+                    Image: {
+                        data: fs.readFileSync('uploads/temp.jpg'),
+                        contentType: 'image/jpeg'
+                    },
+                    address: add,
+                    age:ag
+                    
                 },
                 {
-                    new: true
+                    new: false
                 });
-            res.send("Appointment is pending");
+        }
+            res.render("HomeP");
             
     }
         catch (e) {

@@ -210,10 +210,21 @@ app.post('/delPatByAdmin', async(req, res) => {
 app.post('/delPerceptionByAdmin', async(req, res) => {
     try {
         const data = req.body.button;
-        const result = await Prescription.findByIdAndDelete({ _id:data });
+        const result = await Prescription.findByIdAndDelete({ _id: data });
         res.send("Preception Deleted");
     } catch (e) {
         console.log(e);
+        res.send(`<script>alert("Something went wrong")</script>`)
+    }
+})
+app.post('/delPerceptionByDoc', async(req, res) => {
+    try {
+        const data = req.body.button;
+        const result = await Appointments.findByIdAndDelete({ _id: data });
+        res.send("Appointment Deleted");
+    } catch (e) {
+        console.log(e);
+        res.send(`<script>alert("Something went wrong")</script>`)
     }
 })
 app.post('/delPendingByAdmin', async(req, res) => {

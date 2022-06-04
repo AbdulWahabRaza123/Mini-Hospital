@@ -9,43 +9,49 @@ $.ajax({
                     type: 'GET',
                     success: function(count){
                         console.log("I am inside javascript file and count is ", count);
-                                $.ajax({
-                    url: '/getPatientDetails',
-                    type: 'GET',
-                                 success: function (data) {
-                //    data=JSON.parse(data);
-                        for (var i = 0; i < count; i++)
-                        {
-                                const row1 = document.createElement('div');
-                                row1.className = 'Row';
-                                row1.style.cssText = 'margin-top:40px;';
-                                const c1 = document.createElement('div');
-                                c1.className = 'C1';
+                      $.ajax({
+                        url: '/getPatientDetails',
+                        type: 'GET',
+                        success: function (data) {
+                          //    data=JSON.parse(data);
+                          for (var i = 0; i < count; i++) {
+                            const row1 = document.createElement('div');
+                            row1.className = 'Row';
+                            row1.style.cssText = 'margin-top:40px;';
+                            const c1 = document.createElement('div');
+                            c1.className = 'C1';
                             c1.style.cssText = 'overflow:auto;background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);width:300px;height:400px;margin-left:80px;border-radius:15px;margin-bottom:10px;';
                             const button1 = document.createElement('button');
                             const button2 = document.createElement('button');
+                            const button3 = document.createElement('button');
                             const details = document.createElement('div');
                             details.className = "details";
-                                     console.log("Here we are ",data)
-                                     console.log("Data is ", data[i]);
-                                     details.innerHTML = `<center>${data[i].pName}<br/><br/></center>`
-                                     details.style.cssText = 'color:#fff;font-weight: bold;margin-top:30%;font-size:25px;';
-                                button1.className = 'Button1';
-                                button1.style.cssText = 'text-decoration: none;color:green;background:#fff;font-weight: bold;margin-left:37%;margin-top:5%;border:none;border-radius:5px;font-size:20px;';
+                            console.log("Here we are ", data)
+                            console.log("Data is ", data[i]);
+                            details.innerHTML = `<center>${data[i].pName}<br/><br/></center>`
+                            details.style.cssText = 'color:#fff;font-weight: bold;margin-top:30%;font-size:25px;';
+                            button1.className = 'Button1';
+                            button1.style.cssText = 'text-decoration: none;color:green;background:#fff;font-weight: bold;margin-left:37%;margin-top:5%;border:none;border-radius:5px;font-size:20px;';
                             button1.value = data[i]._id;
                             labelId = data[i].labelId;
                             lebalName = data[i].lebalName;
                             confidance = data[i].confidance;
                             pName = data[i].pName;
                             dName = data[i].docName;
-                          cnic = data[i].getcnic;
-                          age = data[i].age;
-                          address = data[i].address;
+                            cnic = data[i].getcnic;
+                            age = data[i].age;
+                            address = data[i].address;
+                            button3.innerText = "Reject";
+                            button3.className = "Button2";
                             button1.innerText = "Accept";
                             button2.className = 'Button1';
                             button2.value = data[i]._id;
+                            button3.value = data[i]._id;
+                            button3.style.cssText = "text-decoration: none;color:red;background:#fff;font-weight: bolder;margin-left:37%;margin-top:6%;border:none;border-radius:5px;font-size:20px;";
                             button2.innerText = "Image";
+                           
                             button2.style.cssText = 'text-decoration: none;color:green;background:#fff;font-weight: bold;margin-left:37%;margin-top:15%;border:none;border-radius:5px;font-size:20px;';
+                            
                             button2.onclick = function () {
                                    var myWindow = window.open("", "", "width=600,height=450");
             
@@ -174,14 +180,31 @@ var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
                 .catch((err) => console.log("Here is errer ",err));
   };
                   
+button3.onclick = function () {
+                              fetch('/delPerceptionByDoc', {
+                                method: 'POST',
+                                headers: {
+                                  Authorization: 'Bearer abcdxyz',
+                                  'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ 'button': button1.value }),
+                              })
+                                .then((data) => {
+                                  // console.log("Data is ", data);
+                                  // alert("Perception Deleted Reload Page");
+                                  window.location.reload();
 
+                                })
+                                .catch((err) => console.log(err));
+                            };
                         
                             
                             generateBoxes.appendChild(row1);
                             row1.appendChild(c1);
                             c1.appendChild(details);
                             c1.appendChild(button2);
-                            c1.appendChild(button1);
+                          c1.appendChild(button1);
+                          c1.appendChild(button3);
                                 
 
                         }

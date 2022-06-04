@@ -441,6 +441,20 @@ app.post('/signupAdmin',async(req, res) => {
         res.send(`<script>alert("Enter right signup details");window.location.href = "/loginA";</script>`);
     }
 })
+app.post('/checkAdminPassword', async (req, res) => {
+    try {
+        console.log("I am here");
+        const email = req.body.email;
+        // console.log(email);
+        const password = req.body.password;
+        // console.log(password);
+        const getemail = await Admins.findOne({ email: email });
+        // console.log(getemail);
+        res.send(getemail);
+    } catch (e) {
+        console.log(e);
+    }
+})
 app.post('/loginAdmin', async(req, res) => {
     try {
         const email = req.body.email;
@@ -457,9 +471,10 @@ app.post('/loginAdmin', async(req, res) => {
         }
         else {
             res.send(`<script>alert("Enter right login details");window.location.href = "/admin";</script>`);
+            
         }
     } catch (e) {
-        res.send("Invalid login Detail");
+        res.send(`<script>alert("Enter right login details");window.location.href = "/admin";</script>`);
     }
 })
 app.get('/logoutD',authD, async (req, res) => {
